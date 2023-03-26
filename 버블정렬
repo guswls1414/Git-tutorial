@@ -10,3 +10,11 @@ def bubble_sort(arr):
                 arr[j], arr[j+1] = arr[j+1], arr[j]
     
     return arr
+
+# 예시 배열
+arr = [32, 41, 5, 96, 77, 1, 103]
+
+bubble_sort(arr)
+
+for i in range(len(arr)):
+    print(arr[i], end = " ")
