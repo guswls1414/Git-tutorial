@@ -1,0 +1,26 @@
+def insertion_sort(arr):
+    n = len(arr)
+    
+    # 배열 길이만큼 반복
+    for i in range(1, n):
+        # 현재 위치의 값을 key 변수에 저장
+        key = arr[i]
+        
+        # key 값보다 큰 값들을 오른쪽으로 한 칸씩 이동하며 key 값을 삽입할 위치를 찾음
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+        
+        # key 값을 찾은 위치에 삽입
+        arr[j+1] = key
+    
+    return arr
+
+# 예시 배열
+arr = [32, 41, 5, 96, 77, 1, 103]
+
+insertion_sort(arr)
+
+for i in range(len(arr)):
+    print(arr[i], end = " ")
