@@ -1,0 +1,25 @@
+def selection_sort(arr):
+    n = len(arr)
+    
+    # 배열 길이만큼 반복
+    for i in range(n):
+
+    # 가장 작은 값을 저장할 변수에 i를 초기화
+    min_idx = i
+    for j in range(i + 1, n):
+        # 만약 가장 작은 값변수가 다음 인덱스의 값보다 클경우
+        if arr[min_idx] > arr[j]:
+            min_idx = j # 값을 변경
+
+    # 값을 변경
+    arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    
+    return arr
+
+# 예시 배열
+arr = [32, 41, 5, 96, 77, 1, 103]
+
+selection_sort(arr)
+
+for i in range(len(arr)):
+    print(arr[i], end = " ")
