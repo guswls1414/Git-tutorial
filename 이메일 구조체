@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+struct email {
+    char title[50];
+    char recipient[50];
+    char sender[50];
+    char content[200];
+    char date[20];
+    int priority;
+};
+
+int main() {
+    struct email my_email = {
+        "안녕하세요",
+        "guswls14208@naver.com",
+        "guswls14208@naver.com",
+        "반갑습니다.",
+        "2023-03-27",
+        1
+    };
+
+    // 이메일 출력
+    printf("제목: %s\n", my_email.title);
+    printf("수신자: %s\n", my_email.recipient);
+    printf("발신자: %s\n", my_email.sender);
+    printf("내용: %s\n", my_email.content);
+    printf("날짜: %s\n", my_email.date);
+    printf("우선순위: %d\n", my_email.priority);
+
+    return 0;
+}
