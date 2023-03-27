@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+struct complex {
+    double real;
+    double imag;
+};
+
+struct complex add_complex(struct complex num1, struct complex num2) {
+    struct complex sum;
+
+    sum.real = num1.real + num2.real;
+    sum.imag = num1.imag + num2.imag;
+
+    return sum;
+}
+
+int main() {
+    struct complex a, b, sum;
+
+    // 첫 번째 복소수 입력
+    printf("첫 번째 복소수의 실수부: ");
+    scanf("%lf", &a.real);
+    printf("첫 번째 복소수의 허수부: ");
+    scanf("%lf", &a.imag);
+
+    // 두 번째 복소수 입력
+    printf("두 번째 복소수의 실수부: ");
+    scanf("%lf", &b.real);
+    printf("두 번째 복소수의 허수부: ");
+    scanf("%lf", &b.imag);
+
+    // 두 복소수 더하기
+    sum = add_complex(a, b);
+
+    // 결과 출력
+    printf("두 복소수의 합: %.2f + %.2fi\n", sum.real, sum.imag);
+
+    return 0;
+}
