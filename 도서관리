@@ -5,17 +5,17 @@
 #define MAX_TITLE_LENGTH 20
 #define MAX_AUTHOR_LENGTH 20
 
-typedef struct {
+typedef struct {	// 책 구조체를 만들었다
 	int id;
 	char author[MAX_AUTHOR_LENGTH];
 	char title[MAX_TITLE_LENGTH];
 } Book;
 
-int menu;
-int num_books = 0;
-Book library[MAX_BOOKS];
+int menu;	// 메뉴를 입력받을 변수
+int num_books = 0;	// 도서관에 저장된 책의 개수를 저장할 변수
+Book library[MAX_BOOKS];	//책들이 저장될 도서관배열
 
-void input() {
+void input() {		// 메뉴를 입력받는 함수
 	printf("=========================================\n");
 	printf("1. 도서 번호로 책 찾기\n");
 	printf("2. 저자 이름으로 책 찾기\n");
@@ -27,54 +27,54 @@ void input() {
 	scanf("%d", &menu);
 }
 
-void search_book_by_id() {
+void search_book_by_id() {	// 1번을 고르면 실행될 도서 번호로 책을 찾는 함수
 	int book_id, i;
 	int check = 0;
 	printf("도서 번호를 입력해주세요 : ");
-	scanf("%d", &book_id);
+	scanf("%d", &book_id);	// book_id 변수에 사용자가 입력한 도서 번호를 입력받음
 	for (i = 0; i < num_books; i++) {
-		if (library[i].id == book_id) {
+		if (library[i].id == book_id) {	// 도서관배열을 쭉봐서 사용자가 찾고자하는 도서번호랑 같으면 책 제목을 출력, check를 1로 변경
 			printf("해당 책 제목은 %s입니다.\n", library[i].title);
 			check = 1;
 			break;
 		}
 	}
-	if (!check) {
+	if (!check) {	// check == 0 이면 그 책은 없는임거임
 		printf("해당 책은 존재하지 않습니다.\n");
 	}
 }
-void search_book_by_author() {
+void search_book_by_author() {	// 2번을 고르면 실행될 저자 이름으로 책을 찾는 함수
 	char book_author[MAX_AUTHOR_LENGTH];
 	int i, check = 0;
 	printf("책의 저자를 입력해주세요 : ");
 	scanf("%s", book_author);
 	for (int i = 0; i < num_books; i++) {
-		if (strcmp(library[i].author, book_author) == 0) {
+		if (strcmp(library[i].author, book_author) == 0) {	// 도서관 배열을 쭉봐서 사용자가 입력한 저자가 있으면 책 제목 출력, check를 1로 변경
 			printf("해당 책 제목은 %s입니다.\n", library[i].title);
 			check = 1;
 		}
 	}
-	if (!check) {
+	if (!check) {	// check == 0 이면 해당 책은음존재하지않음
 		printf("해당 책은 존재하지 않습니다.\n");
 	}
 }
-void search_book_by_title() {
+void search_book_by_title() {	// 3번을 고르면 실행될 제목으로 책을 찾는 수함수
 	char book_title[MAX_TITLE_LENGTH];
 	int i, check = 0;
 	printf("책의 제목을 입력해주세요 : ");
 	scanf("%s", book_title);
 	for (i = 0; i < num_books; i++) {
-		if (strcmp(library[i].title, book_title) == 0) {
+		if (strcmp(library[i].title, book_title) == 0) {	// 도서관 배열을 쭉봐서 사용자가 입력한 책제목이 있으면 책 번호 출력, check를 1로 변경
 			printf("해당 책의 번호는 %d입니다.\n", library[i].id);
 			check = 1;
 		}
 	}
-	if (!check) {
+	if (!check) {	// check == 0 이면 해당 책은 존재하지음않음
 		printf("해당 책은 존재하지 않습니다.\n");
 	}
 }
-void add_book() {
-	if (num_books >= MAX_BOOKS) {
+void add_book() {	// 4번을 고르면 실행될 책수추가 함수
+	if (num_books >= MAX_BOOKS) {	// 현재 도서관에 있는 책의 개수가 앞서 정한 책의 한계보다 많으면 도서관에 수용 불가
 		printf("도서관이 더 이상 책을 수용할 수 없습니다.\n");
 		return;
 	}
@@ -84,15 +84,15 @@ void add_book() {
 	printf("책의 저자를 입력해주세요 : ");
 	scanf("%s", new_book.author);
 	new_book.id = num_books + 1;
-	library[num_books] = new_book;
-	num_books++;
+	library[num_books] = new_book;	// new_book이라는 Book구조체 변수를 만들고 그 안에 책 제목, 책 저자, 책 번호를 저장하고 도서관 배열에 추가시키기
+	num_books++;	// 도서관에 책이 추가됐으므로 num_book는 1가증가
 	printf("새로운 책이 추가 되었습니다.\n");
 }
-void count_books() {
-	printf("도서관이 소장한 도서의 수는 %d입니다.\n", num_books);
+void count_books() {	// 5번을 고르면 실행될 책의 개수를 구하수는 함수
+	printf("도서관이 소장한 도서의 수는 %d입니다.\n", num_books);	//num_books 변수에 책의 개수가 있으므로 그걸 그대로 출력하면 됨
 }
 
-void pro() {
+void pro() {	// process함수는 입력받은 메뉴에 따라 케이스별로 실행될 함수를 정해서 
 	switch (menu) {
 	case 1:
 		search_book_by_id();
