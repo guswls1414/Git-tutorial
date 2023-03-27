@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_PRODUCTS 100
+
+struct Product {
+    char name[50];
+    int price;
+    int quantity;
+    int total_value;
+};
+
+struct Product inventory[MAX_PRODUCTS];
+int num_products = 0;
+
+void add_product() {
+    if (num_products == MAX_PRODUCTS) {
+        printf("재고 최대 개수를 초과하였습니다.\n");
+        return;
+    }
+    struct Product p;
+    printf("==============================\n");
+    printf("상품 이름: ");
+    scanf("%s", p.name);
+    printf("상품 가격: ");
+    scanf("%d", &p.price);
+    printf("상품 개수: ");
+    scanf("%d", &p.quantity);
+    printf("==============================\n");
+    p.total_value = p.price * p.quantity;
+    inventory[num_products++] = p;
+    printf("상품이 추가되었습니다.\n");
+}
+
+void search_product() {
+    char name[50];
+    printf("검색할 상품 이름: ");
+    scanf("%s", name);
+    for (int i = 0; i < num_products; i++) {
+        if (strcmp(name, inventory[i].name) == 0) {
+            printf("상품 이름: %s\n", inventory[i].name);
+            printf("상품 가격: %d\n", inventory[i].price);
+            printf("상품 개수: %d\n", inventory[i].quantity);
+            printf("총 재고액: %d\n", inventory[i].total_value);
+            return;
+        }
+    }
+    printf("해당 상품이 재고에 없습니다.\n");
+}
+
+int main() {
+    add_product();
+    search_product();
+}
