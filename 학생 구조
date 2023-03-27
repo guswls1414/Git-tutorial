@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+typedef union idNum {
+    char pid[20];
+    char id[10];
+} IdNum;
+
+typedef struct student {
+    IdNum id;
+    char name[20];
+    char phoneNumber[20];
+} Student;
+
+int main() {
+    Student s1;
+    printf("주민번호를 입력하세요: ");
+    scanf("%s", s1.id.pid);
+    printf("이름을 입력하세요: ");
+    scanf("%s", s1.name);
+    printf("전화번호를 입력하세요: ");
+    scanf("%s", s1.phoneNumber);
+
+    printf("학번: %s\n", s1.id.pid);
+    printf("이름: %s\n", s1.name);
+    printf("전화번호: %s\n", s1.phoneNumber);
+
+    return 0;
+}
