@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_EMPLOYEES 10
+
+struct employee {
+    int id;
+    char name[50];
+    char phone[20];
+    int age;
+};
+
+int main() {
+    struct employee employees[MAX_EMPLOYEES] = {
+        {1, "김현진", "010-1111-1111", 25},
+        {2, "현진김", "010-2222-2222", 30},
+        {3, "진현김", "010-3333-3333", 18},
+        {4, "김진현", "010-4444-4444", 28},
+        {5, "현김진", "010-5555-5555", 22},
+        {6, "진김현", "010-6666-6666", 19},
+        {7, "홍길동", "010-7777-7777", 31},
+        {8, "김철수", "010-8888-8888", 29},
+        {9, "박영희", "010-9999-9999", 21},
+        {10, "김김김", "010-0000-0000", 27}
+    };
+
+    for (int i = 0; i < MAX_EMPLOYEES; i++) {
+        if (employees[i].age >= 20 && employees[i].age <= 30) {
+            printf("%s", employees[i].name);
+            printf("%d\n", employees[i].id);
+        }
+    }
+
+    return 0;
+}
