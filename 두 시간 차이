@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <time.h>
+
+// 구조체 정의
+struct Time {
+    int hour;
+    int minute;
+    int second;
+};
+
+// 두 시간 차이를 계산하는 함수
+struct Time diff_time(struct Time t1, struct Time t2) {
+    int t1_sec = t1.hour * 3600 + t1.minute * 60 + t1.second;
+    int t2_sec = t2.hour * 3600 + t2.minute * 60 + t2.second;
+
+    int diff_sec = t2_sec - t1_sec;
+    if (diff_sec < 0) {
+        diff_sec += 24 * 3600; // 하루는 24시간 * 3600초
+    }
+
+    struct Time diff;
+    diff.hour = diff_sec / 3600;
+    diff.minute = (diff_sec % 3600) / 60;
+    diff.second = diff_sec % 60;
+
+    return diff;
+}
+
+int main() {
+
+    // 사용자로부터 두 시간을 입력받아서 차이를 계산
+    struct Time time1, time2, diff;
+    printf("시작시간(시, 분, 초): ");
+    scanf("%d %d %d", &time1.hour, &time1.minute, &time1.second);
+    printf("종료시간(시, 분, 초): ");
+    scanf("%d %d %d", &time2.hour, &time2.minute, &time2.second);
+
+    diff = diff_time(time1, time2);
+    printf("소요시간: %d:%d:%d\n", diff.hour, diff.minute, diff.second);
+
+    return 0;
+}
