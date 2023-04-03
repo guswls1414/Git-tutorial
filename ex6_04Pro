@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>반복수행</title>
+</head>
+<body>
+
+	<% 
+        request.setCharacterEncoding("utf-8");
+		
+		int value = request.getParameter("value");
+	%>
+
+	<h3>데이터 전송 확인</h3>
+	<table border=1 width=50%>
+		<tr>
+            <th>글번호</th>
+            <th>글제목</th>
+            <th>글내용</th>
+        </tr>
+		
+		<% for(int i = value; i >= 0; i--){ %>
+		<tr>
+            <th><%=i%></th>
+            <th>제목<%=i%></th>
+            <th>내용<%=i%></th>
+        </tr>
+	    <% } %>
+
+</body>
+</html>
