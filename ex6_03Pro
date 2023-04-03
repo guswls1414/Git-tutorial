@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인 확인 폼</title>
+</head>
+<body>
+
+	<% 
+        request.setCharacterEncoding("utf-8");
+		
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+	
+		if(id.equals("abcd") && password.equals("z1234")
+         out.println("로그인에 성공하였습니다.")
+        else
+         out.println("로그인에 실패하였습니다.")
+		 
+	%>
+
+	<h3>데이터 전송 확인</h3>
+	<a href="formEx01.jsp">이전으로 이동하기</a>
+
+</body>
+</html>
