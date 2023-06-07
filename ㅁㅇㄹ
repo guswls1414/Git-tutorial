@@ -1,18 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>좋아하는 숫자 입력</title>
-</head>
-<body>
-	<h2>좋아하는 숫자를 입력하세요.</h2>
-	<form method="post" action="ex10_03Pro.jsp">
-		아이디: <input type="text" name="id"> <br>
-		패스워드: <input type="password" name="passwd"> <br>
-		좋아하는 숫자: <input type="text" name="number"> <br>
-		<input type="submit" value="입력완료">
-	</form>
+<!DOCTYPE html> <html>
+
+<head> 
+    <meta charset='utf=8'></meta>
+    <title>Text표현하기. Web3D. VR. 가상현실. X3D</title>
+    <link rel="stylesheet" type="text/css" href="http://www.x3dom.org/x3dom/release/x3dom.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="http://www.x3dom.org/x3dom/release/x3dom.js"></script>
+</head>  
+
+<body id='main'> <p>Group bench</p>
+
+<X3D><Scene>
+
+<Group id='bench'>
+
+<Group id='seat'>
+
+<Transform><Shape DEF='bar'><Box size='4 .3 .4'></Box>
+
+<Appearance DEF='brown'>
+
+<Material diffuseColor='0.3 0.15 0.0'></Material>
+
+</Appearance></Shape></Transform>
+
+<Transform translation='0 0 -.5'><Shape USE='bar'/></Transform>
+
+<Transform translation='0 0 -1'><Shape USE='bar'/></Transform>
+
+<Transform translation='0 0 -1.5'><Shape USE= 'bar'/></Transform>
+
+</Group>
+
+<Transform center='0 0 -1.5' rotation= '1 0 0 -2'>
+
+<Group USE='seat'></group></Transform>
+
+<Transform translation='-1.5 -.5 0'>
+
+<Shape DEF='leg'><Box size='.4 1 .4'></Box>
+
+<Appearance USE='brown'></Appearance></Shape></Transform>
+
+<Transform translation= '1.5 -.5 0'><Shape USE='leg'></Shape></Transform>
+
+<Transform translation='1.5 -.5 -1.5'> <Shape USE='leg'></Shape></Transform>
+
+<Transform translation='-1.5 -.5 -1.5'> <Shape USE='leg'></Shape></Transform>
+</Group>
+<Transform translation="-6 0 0"><Transform use="bench"></Transform></Transform>
+<Transform translation="6 0 0"><Transform use="bench"></Transform></Transform>
+</Scene>
+</X3D>
 </body>
 </html>
