@@ -1,0 +1,41 @@
+import selenium
+from selenium import webdriver
+import pyautogui as p
+import time
+from selenium.webdriver.common.by import By
+
+options = webdriver.ChromeOptions()
+options.add_argument("--start-maximized")
+driver = webdriver.Chrome()
+
+driver.get('http://www.daum.net')
+
+검색어 = '시청률'
+driver.find_element(By.XPATH, '//*[@id="q"]').send_keys(검색어)
+
+driver.find_element(By.XPATH, '//*[@id="daumSearch"]/fieldset/div/div/button[3]').click()
+time.sleep(1)
+
+driver.find_element(By.XPATH, '//*[@id="jupTvRatingColl"]/div[2]/div[1]/div[1]/ul/li[1]/a').click()
+time.sleep(1)
+
+시청률_텍스트 = driver.find_element(By.XPATH, '//*[@id="jupTvRatingColl"]/div[2]/div[1]/div[3]/div/table/tbody').text
+time.sleep(1)
+
+tmp = [i.split() for i in 시청률_텍스트.split('\n')] # 띄어쓰기로 구분해서 
+
+tmp_1 = [tmp[i] + tmp[i + 1] for i in range(0, len(tmp), 2)]
+
+테이블_리스트 = [[tmp_1[i][0], " ".join(tmp_1[i][1:-2]), tmp_1[i][-2], tmp_1[i][-1]] for i in range(len(tmp_1))]
+
+
+
+
+import pandas as pd
+
+df = pd.DataFrame.from_records(테이블_리스트, columns=['순위', '프로그램', '채널', '시청률'])
+print(df)
+
+import xlwings as xw
+
+xw.view(df)
